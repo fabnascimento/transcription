@@ -6,10 +6,17 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "vue-cli-service test:unit",
+    "start": "node app.js"
   },
   "dependencies": {
+    "@carbon/vue": "^2.10.0",
+    "axios": "^0.19.0",
+    "body-parser": "^1.19.0",
     "core-js": "^2.6.5",
+    "express": "^4.17.1",
+    "ibm-watson": "^4.2.2",
+    "multer": "^1.4.1",
     "vue": "^2.6.10"
   },
   "devDependencies": {
