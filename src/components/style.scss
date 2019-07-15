@@ -1,0 +1,16 @@
+html,
+body,
+#app,
+.hello,
+.bx--grid{
+    height: 100%;
+}
+.bx--col{
+    height: calc(100vh - 60px);
+    padding: 1.2rem;
+    .cv-text-area.bx--form-item,
+    .bx--text-area__wrapper,
+    textarea{
+        height: 100%;
+    }
+}

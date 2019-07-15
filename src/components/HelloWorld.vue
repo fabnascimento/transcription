@@ -1,22 +1,22 @@
 <template>
   <div class="hello">
-    <cv-file-uploader
-      :label="fileUploaderLabel"
-      :helperText="helperText"
-      :buttonLabel="fileUploaderButtonLabel"
-      :accept="fileUploaderAccept"
-      :clear-on-reselect="fileUploaderClearOnReselect"
-      :initial-state-uploading="fileUploaderInitialStateUploading"
-      :multiple="fileUploaderMultiple"
-      :removable="fileUploaderRemovable"
-      @change="onChange" 
-      v-model="storyFiles" ref="fileUploader">
-    </cv-file-uploader>
-    <cv-button @click="transcribe" :disabled="!storyFiles">Transcribe</cv-button>
-    <cv-text-area
-      :label="transcriptionLabel"
-      v-model="transcription">
-    </cv-text-area>
+    <div class="bx--grid">
+      <div class="bx--row">
+        <div class="bx--col">
+          <cv-file-uploader :label="fileUploaderLabel" :helperText="helperText" :buttonLabel="fileUploaderButtonLabel"
+            :accept="fileUploaderAccept" :clear-on-reselect="fileUploaderClearOnReselect"
+            :initial-state-uploading="fileUploaderInitialStateUploading" :multiple="fileUploaderMultiple"
+            :removable="fileUploaderRemovable" @change="onChange" v-model="storyFiles" ref="fileUploader">
+          </cv-file-uploader>
+          <cv-button @click="transcribe" :disabled="!storyFiles">Transcribe</cv-button>
+        </div>
+        <div class="bx--col">
+          <cv-text-area :label="transcriptionLabel" v-model="transcription" placeholder="Your transcription will be rendered here">
+          </cv-text-area>
+        </div>
+      </div>
+    </div>
+
 
     <cv-loading v-if="loading" :active="loading" :overlay="overlay"></cv-loading>
   </div>
@@ -47,6 +47,7 @@ export default {
     transcribe() {
       if (this.storyFiles) {
         let formData = new FormData();
+        this.transcription = ""
         formData.append('file', this.storyFiles[0].file)
         this.loading = true;
         axios.post('/transcribe', formData, {
@@ -65,6 +66,7 @@ export default {
           .catch(err => {
             console.log('FAILURE!!');
             console.log(err)
+            this.loading = false;
           });
       }
     }
@@ -75,3 +77,6 @@ export default {
   }
 }
 </script>
+<style lang="sass">
+@import './style'
+</style>
