@@ -1,0 +1,9 @@
+applications:
+- path: .
+  memory: 1G
+  instances: 1
+  domain: us-east.mybluemix.net
+  name: itt
+  host: interview-transcriber
+  disk_quota: 1024M
+  buildpack: sdk-for-nodejs
